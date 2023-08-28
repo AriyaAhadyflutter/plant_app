@@ -85,9 +85,9 @@ flutter:
     - family: Lalezar
       fonts:
         - asset: assets/fonts/Lalezar.ttf
-    - family: YekanBakh
+    - family: Yekanplus
       fonts:
-        - asset: assets/fonts/YekanBakh.ttf
+        - asset: assets/fonts/YEKAN_PLUS.TTF
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
