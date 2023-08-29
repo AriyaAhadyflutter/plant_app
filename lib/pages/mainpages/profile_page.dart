@@ -12,7 +12,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('گل اسکن کن '),
+        child: Text('پروفایل'),
       ),
     );
   }

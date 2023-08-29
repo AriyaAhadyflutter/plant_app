@@ -12,7 +12,7 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('گل اسکن کن '),
+        child: Text('علاقه مندی '),
       ),
     );
   }
