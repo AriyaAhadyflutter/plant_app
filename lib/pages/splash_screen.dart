@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/const/constants.dart';
+import 'package:plant_app/pages/root.dart';
 
 class Pages extends StatefulWidget {
   const Pages({super.key});
@@ -116,10 +117,10 @@ class _PagesState extends State<Pages> {
                             curve: Curves.linearToEaseOut);
                       }
                     } else {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                            builder: (context) => const Root(),
                           ));
                     }
                   });
@@ -187,17 +188,6 @@ class TreePages extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder(
-      color: Colors.amber,
     );
   }
 }
