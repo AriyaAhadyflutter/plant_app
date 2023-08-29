@@ -116,7 +116,11 @@ class _PagesState extends State<Pages> {
                             curve: Curves.linearToEaseOut);
                       }
                     } else {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ));
                     }
                   });
                 },
@@ -192,6 +196,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(color: Colors.amber,);
+    return const Placeholder(
+      color: Colors.amber,
+    );
   }
 }
