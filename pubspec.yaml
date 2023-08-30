@@ -91,6 +91,12 @@ flutter:
     - family: nazanin
       fonts:
         - asset: assets/fonts/B-NAZANIN.TTF
+    - family: yagut
+      fonts:
+        - asset: assets/fonts/B Yagut_0.ttf
+    - family: yagut_b
+      fonts:
+        - asset: assets/fonts/B Yagut Bold_0.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

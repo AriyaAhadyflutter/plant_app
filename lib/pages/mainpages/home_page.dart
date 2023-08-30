@@ -173,11 +173,14 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(
-                              r'$' + plantList[index].price.toString(),
+                              '${plantList[index].price.toString().farsiNumbers} ت',
                               style: TextStyle(
+                                fontFamily: 'Lalezar',
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                                 color: MyConstants.primarycolor,
-                                fontSize: 16,
                               ),
+                              textDirection: TextDirection.rtl,
                             ),
                           ),
                         ),
@@ -252,9 +255,20 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Row(
                           children: [
-                            Image.asset('assets/images/PriceUnit-green.png'),
+                            SizedBox(
+                              height: 20,
+                              child: Image.asset(
+                                  'assets/images/PriceUnit-green.png'),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
                             Text(
-                              plantList[index].price.toString(),
+                              plantList[index].price.toString().farsiNumbers,
+                              style: TextStyle(
+                                  fontFamily: 'Lalezar',
+                                  color: MyConstants.primarycolor,
+                                  fontSize: 21),
                             ),
                           ],
                         ),
@@ -284,6 +298,7 @@ class _HomePageState extends State<HomePage> {
                               right: 80,
                               child: Column(
                                 children: [
+                                  const SizedBox(height: 10),
                                   Text(
                                     plantList[index].category,
                                     style: const TextStyle(
@@ -292,13 +307,14 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.black,
                                     ),
                                   ),
+                                  const SizedBox(height: 5),
                                   Text(
                                     plantList[index].plantName,
                                     style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'nazanin',
-                                      color: MyConstants.blackcolor,
-                                    ),
+                                        fontSize: 18,
+                                        fontFamily: 'yaguts',
+                                        color: MyConstants.blackcolor,
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ],
                               ),
@@ -315,5 +331,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     ));
+  }
+}
+
+extension FarsiNubers on String {
+  String get farsiNumbers {
+    const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const farsi = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    String text = this;
+    for (int i = 0; i < english.length; i++) {
+      text = text.replaceAll(english[i], farsi[i]);
+    }
+    return text;
   }
 }
