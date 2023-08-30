@@ -88,6 +88,9 @@ flutter:
     - family: Yekanplus
       fonts:
         - asset: assets/fonts/YEKAN_PLUS.TTF
+    - family: nazanin
+      fonts:
+        - asset: assets/fonts/B-NAZANIN.TTF
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
