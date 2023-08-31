@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
+import 'package:plant_app/pages/mainpages/detailpage.dart';
+import 'package:plant_app/widgets/farsiNumbers/farsi_number.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -125,90 +128,108 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 itemCount: plantList.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: 200,
-                    margin: const EdgeInsets.symmetric(horizontal: 18),
-                    decoration: BoxDecoration(
-                      color: MyConstants.primarycolor.withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          right: 20,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                plantList[index].isFavorated == true
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 50,
-                          right: 50,
-                          top: 50,
-                          bottom: 50,
-                          child: Image.asset(plantList[index].imageURL),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          left: 20,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              '${plantList[index].price.toString().farsiNumbers} ت',
-                              style: TextStyle(
-                                fontFamily: 'Lalezar',
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: MyConstants.primarycolor,
-                              ),
-                              textDirection: TextDirection.rtl,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                            bottom: 15,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            child:
+                                Detailpage(plantid: plantList[index].plantId),
+                            type: PageTransitionType.fade,
+                          ));
+                    },
+                    child: Container(
+                      width: 200,
+                      margin: const EdgeInsets.symmetric(horizontal: 18),
+                      decoration: BoxDecoration(
+                        color: MyConstants.primarycolor.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 10,
                             right: 20,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  plantList[index].category,
-                                  style: const TextStyle(
-                                      fontFamily: ('nazanin'),
-                                      color: Colors.white,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    bool isFavorited = toggleIsFavorit(
+                                        (plantList[index].isFavorated));
+                                    plantList[index].isFavorated = isFavorited;
+                                  });
+                                },
+                                icon: Icon(
+                                  plantList[index].isFavorated == true
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  size: 20,
+                                  color: MyConstants.primarycolor,
                                 ),
-                                Text(
-                                  plantList[index].plantName,
-                                  style: const TextStyle(
-                                      fontFamily: ('Yekanplus'),
-                                      color: Colors.white70,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 50,
+                            right: 50,
+                            top: 50,
+                            bottom: 50,
+                            child: Image.asset(plantList[index].imageURL),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            left: 20,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                '${plantList[index].price.toString().farsiNumbers} ت',
+                                style: TextStyle(
+                                  fontFamily: 'Lalezar',
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: MyConstants.primarycolor,
                                 ),
-                              ],
-                            ))
-                      ],
+                                textDirection: TextDirection.rtl,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                              bottom: 15,
+                              right: 20,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    plantList[index].category,
+                                    style: const TextStyle(
+                                        fontFamily: ('nazanin'),
+                                        color: Colors.white,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    plantList[index].plantName,
+                                    style: const TextStyle(
+                                        fontFamily: ('Yekanplus'),
+                                        color: Colors.white70,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ))
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -241,87 +262,98 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                 itemCount: plantList.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: MyConstants.primarycolor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 80,
-                    width: size.width,
-                    margin: const EdgeInsets.only(bottom: 10, top: 10),
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              height: 20,
-                              child: Image.asset(
-                                  'assets/images/PriceUnit-green.png'),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              plantList[index].price.toString().farsiNumbers,
-                              style: TextStyle(
-                                  fontFamily: 'Lalezar',
-                                  color: MyConstants.primarycolor,
-                                  fontSize: 21),
-                            ),
-                          ],
-                        ),
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color:
-                                    MyConstants.primarycolor.withOpacity(0.8),
-                                shape: BoxShape.circle,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            child:
+                                Detailpage(plantid: plantList[index].plantId),
+                            type: PageTransitionType.fade,
+                          ));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: MyConstants.primarycolor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: 80,
+                      width: size.width,
+                      margin: const EdgeInsets.only(bottom: 10, top: 10),
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                child: Image.asset(
+                                    'assets/images/PriceUnit-green.png'),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 0,
-                              left: 0,
-                              child: SizedBox(
-                                height: 80,
-                                child: Image.asset(plantList[index].imageURL),
+                              const SizedBox(
+                                width: 5,
                               ),
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 80,
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    plantList[index].category,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'iranSans',
-                                      color: Colors.black,
+                              Text(
+                                plantList[index].price.toString().farsiNumbers,
+                                style: TextStyle(
+                                    fontFamily: 'Lalezar',
+                                    color: MyConstants.primarycolor,
+                                    fontSize: 21),
+                              ),
+                            ],
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color:
+                                      MyConstants.primarycolor.withOpacity(0.8),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 5,
+                                right: 0,
+                                left: 0,
+                                child: SizedBox(
+                                  height: 80,
+                                  child: Image.asset(plantList[index].imageURL),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 5,
+                                right: 80,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      plantList[index].category,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'iranSans',
+                                        color: Colors.black,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    plantList[index].plantName,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontFamily: 'yaguts',
-                                        color: MyConstants.blackcolor,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      plantList[index].plantName,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'yaguts',
+                                          color: MyConstants.blackcolor,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        )
-                      ],
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -331,17 +363,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     ));
-  }
-}
-
-extension FarsiNubers on String {
-  String get farsiNumbers {
-    const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const farsi = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    String text = this;
-    for (int i = 0; i < english.length; i++) {
-      text = text.replaceAll(english[i], farsi[i]);
-    }
-    return text;
   }
 }
