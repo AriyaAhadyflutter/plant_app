@@ -92,14 +92,14 @@ class _PagesState extends State<Pages> {
               ]),
           Positioned(
             left: 35,
-            bottom: 70,
+            bottom: 50,
             child: Row(
               children: buildIndicator()!,
             ),
           ),
           Positioned(
-            bottom: 50,
-            right: 30,
+            bottom: 30,
+            right: 20,
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -167,7 +167,7 @@ class TreePages extends StatelessWidget {
               image: AssetImage(image),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 13),
           Text(
             title,
             style: TextStyle(
@@ -176,7 +176,7 @@ class TreePages extends StatelessWidget {
                 fontSize: 30,
                 fontWeight: FontWeight.w700),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Text(
             description,
             textAlign: TextAlign.center,
