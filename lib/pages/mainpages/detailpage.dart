@@ -134,7 +134,7 @@ class _DetailpageState extends State<Detailpage> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Row(
@@ -143,27 +143,141 @@ class _DetailpageState extends State<Detailpage> {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.star),
-                          Text('3.3'),
+                          Icon(
+                            Icons.star,
+                            color: MyConstants.primarycolor,
+                            size: 30,
+                          ),
+                          Text(
+                            plantlist[widget.plantid]
+                                .rating
+                                .toString()
+                                .farsiNumbers,
+                            style: TextStyle(
+                              fontFamily: 'Lalezar',
+                              color: MyConstants.primarycolor,
+                              fontSize: 25,
+                            ),
+                          ),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text('سانسویریا'),
-                          SizedBox(
+                          Text(
+                            plantlist[widget.plantid].plantName,
+                            style: TextStyle(
+                              fontFamily: 'Lalezar',
+                              fontSize: 33,
+                              color: MyConstants.primarycolor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text('44'),
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                child: Image.asset(
+                                    'assets/images/PriceUnit-green.png'),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                plantlist[widget.plantid]
+                                    .price
+                                    .toString()
+                                    .farsiNumbers,
+                                style: TextStyle(
+                                  fontFamily: 'Lalezar',
+                                  fontSize: 26,
+                                  color: MyConstants.primarycolor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
+                  Text(
+                    plantlist[widget.plantid].decription,
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontFamily: 'yagut',
+                      fontSize: 21,
+                      color: MyConstants.blackcolor.withOpacity(0.7),
+                      fontWeight: FontWeight.bold,
+                      height: 1.55,
+                    ),
+                  )
                 ],
               ),
             ),
           ),
         ],
+      ),
+      floatingActionButton: SizedBox(
+        width: size.width * 0.9,
+        height: 50,
+        child: Row(
+          children: [
+            //شاپینگ لیست
+            Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                color: MyConstants.primarycolor.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 1.1),
+                    blurRadius: 5,
+                    color: MyConstants.primarycolor.withOpacity(0.3),
+                  ),
+                ],
+              ),
+              child: const Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 20),
+            //افزودن به سبد خرید
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: MyConstants.primarycolor,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: const Offset(0, 1.1),
+                      blurRadius: 5,
+                      color: MyConstants.primarycolor.withOpacity(0.3),
+                    ),
+                  ],
+                ),
+                child: const Center(
+                  child: Text(
+                    'افزودن به سبد خرید',
+                    style: TextStyle(
+                      fontFamily: 'Lalezar',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
