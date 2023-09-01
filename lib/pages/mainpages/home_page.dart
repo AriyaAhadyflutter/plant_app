@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
       child: Center(
         child: Column(
           children: [
+            const SizedBox(height: 13),
             //serch box
             Padding(
               padding: const EdgeInsets.only(top: 21.69),
