@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:plant_app/const/constants.dart';
 
 class ScanPage extends StatefulWidget {
@@ -70,7 +71,17 @@ class _ScanPage extends State<ScanPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset('assets/images/code-scan.png', height: 100),
+                    GestureDetector(
+                      onTap: () {
+                        MobileScanner(
+                          onDetect: (barcode, args) {
+                            debugPrint('Working...');
+                          },
+                        );
+                      },
+                      child: Image.asset('assets/images/code-scan.png',
+                          height: 100),
+                    ),
                     const SizedBox(height: 20),
                     Text(
                       'برای اسکن گیاه کلیک کنید ',
