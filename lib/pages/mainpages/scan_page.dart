@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 // import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:plant_app/const/constants.dart';
@@ -12,6 +13,7 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPage extends State<ScanPage> {
+  MobileScannerController cameraController = MobileScannerController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,6 +21,7 @@ class _ScanPage extends State<ScanPage> {
     return Scaffold(
       body: Stack(
         children: [
+          //app bar
           Positioned(
             left: 20,
             right: 20,
