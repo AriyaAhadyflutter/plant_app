@@ -71,6 +71,9 @@ class _CameraPageState extends State<CameraPage> {
                     icon: ValueListenableBuilder(
                       valueListenable: cameraController.torchState,
                       builder: (context, state, child) {
+                        setState(() {
+                          
+                        });
                         switch (state) {
                           case TorchState.off:
                             return const Icon(
