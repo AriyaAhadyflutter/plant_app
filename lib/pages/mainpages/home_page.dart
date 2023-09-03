@@ -262,6 +262,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 20, right: 20),
               height: size.height * 0.3,
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemCount: plantList.length,
                 itemBuilder: (context, index) {
                   return NewProductWidget(

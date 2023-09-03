@@ -27,12 +27,12 @@ class _FavoritePageState extends State<FavoritePage> {
                     ),
                     const SizedBox(height: 18),
                     const Text(
-                      'ظاهرا هیچی رو دوست نداشتی :/',
+                      r'ظاهرا هیچی رو دوست نداشتی :/',
                       style: TextStyle(
                         fontSize: 26,
                         fontFamily: 'yagut',
                         fontWeight: FontWeight.w500,
-                      ),
+                      ),   
                       textDirection: TextDirection.rtl,
                     ),
                   ],
@@ -45,6 +45,7 @@ class _FavoritePageState extends State<FavoritePage> {
                 ),
                 height: size.height * 0.8,
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: widget.favoritedPlants.length,
                   itemBuilder: (context, index) {
                     return NewProductWidget(

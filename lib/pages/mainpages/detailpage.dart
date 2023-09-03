@@ -15,10 +15,15 @@ class Detailpage extends StatefulWidget {
 }
 
 class _DetailpageState extends State<Detailpage> {
+  bool isProductSlected(bool isSelected) {
+    return !isSelected;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     List<Plant> plantlist = Plant.plantList;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -228,7 +233,7 @@ class _DetailpageState extends State<Detailpage> {
         height: 50,
         child: Row(
           children: [
-            //شاپینگ لیست
+            //شاپینگ کارد
             Container(
               height: 50,
               width: 50,
@@ -237,10 +242,11 @@ class _DetailpageState extends State<Detailpage> {
                 borderRadius: BorderRadius.circular(100),
                 boxShadow: [
                   BoxShadow(
-                    offset: const Offset(0, 1.1),
-                    blurRadius: 5,
-                    color: MyConstants.primarycolor.withOpacity(0.3),
-                  ),
+                      offset: const Offset(0, 1.1),
+                      blurRadius: 5,
+                      color: plantlist[widget.plantid].isSelected
+                          ? Colors.red.shade900
+                          : MyConstants.primarycolor.withOpacity(0.3)),
                 ],
               ),
               child: const Icon(
@@ -251,26 +257,70 @@ class _DetailpageState extends State<Detailpage> {
             const SizedBox(width: 20),
             //افزودن به سبد خرید
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: MyConstants.primarycolor,
-                  boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(0, 1.1),
-                      blurRadius: 5,
-                      color: MyConstants.primarycolor.withOpacity(0.3),
-                    ),
-                  ],
-                ),
-                child: const Center(
-                  child: Text(
-                    'افزودن به سبد خرید',
-                    style: TextStyle(
-                      fontFamily: 'Lalezar',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    bool isSelected =
+                        isProductSlected(plantlist[widget.plantid].isSelected);
+                    plantlist[widget.plantid].isSelected = isSelected;
+                    plantlist[widget.plantid].isSelected
+                        ? ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                            content: Center(
+                              child: Text(
+                                'به سبد خرید اضافه شد',
+                                style: TextStyle(
+                                  fontFamily: 'iranyekan',
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 700),
+                            elevation: 10,
+                            behavior: SnackBarBehavior.floating,
+                          ))
+                        : ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                            content: Center(
+                              child: Text(
+                                'از سبد خرید برداشته شد',
+                                style: TextStyle(
+                                  fontFamily: 'iranyekan',
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 700),
+                            elevation: 10,
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: MyConstants.primarycolor,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, 1.1),
+                        blurRadius: 5,
+                        color: MyConstants.primarycolor.withOpacity(0.3),
+                      ),
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'افزودن به سبد خرید',
+                      style: TextStyle(
+                        fontFamily: 'Lalezar',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
