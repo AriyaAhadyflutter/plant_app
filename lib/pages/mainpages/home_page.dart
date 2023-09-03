@@ -198,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                                 '${plantList[index].price.toString().farsiNumbers} ت',
                                 style: TextStyle(
                                   fontFamily: 'Lalezar',
-                                  fontSize: 15,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                   color: MyConstants.primarycolor,
                                 ),
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                                     style: const TextStyle(
                                         fontFamily: ('nazanin'),
                                         color: Colors.white,
-                                        fontSize: 17,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.w500),
                                   ),
                                   Text(
