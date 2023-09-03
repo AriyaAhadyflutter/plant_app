@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app/const/constants.dart';
 import 'package:plant_app/models/plant.dart';
+import 'package:plant_app/widgets/farsiNumbers/farsi_number.dart';
 import 'package:plant_app/widgets/plantWidget/new_Product_Widget.dart';
 
 class CardPage extends StatefulWidget {
@@ -13,7 +15,7 @@ class CardPage extends StatefulWidget {
 class _CardPage extends State<CardPage> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: widget.cardPlants.isEmpty
             ? Center(
@@ -43,16 +45,62 @@ class _CardPage extends State<CardPage> {
                   horizontal: 12,
                   vertical: 30,
                 ),
-                height: size.height * 0.8,
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: widget.cardPlants.length,
-                  itemBuilder: (context, index) {
-                    return NewProductWidget(
-                      plantList: widget.cardPlants,
-                      index: index,
-                    );
-                  },
+                // height: size.height * 0.8,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: widget.cardPlants.length,
+                        itemBuilder: (context, index) {
+                          return NewProductWidget(
+                            plantList: widget.cardPlants,
+                            index: index,
+                          );
+                        },
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        const Divider(
+                          thickness: 1,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                  child: Image.asset(
+                                      'assets/images/PriceUnit-green.png'),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '6900'.farsiNumbers,
+                                  style: TextStyle(
+                                    fontFamily: 'Lalezar',
+                                    color: MyConstants.primarycolor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Text(
+                              'جمع کل',
+                              style: TextStyle(
+                                fontFamily: 'Lalezar',
+                                fontSize: 25,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ));
   }
