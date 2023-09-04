@@ -6,13 +6,18 @@ import 'package:plant_app/widgets/plantWidget/new_Product_Widget.dart';
 
 class CardPage extends StatefulWidget {
   final List<Plant> cardPlants;
-  const CardPage({super.key, required this.cardPlants});
+
+  const CardPage({
+    super.key,
+    required this.cardPlants,
+  });
 
   @override
   State<CardPage> createState() => _CardPage();
 }
 
 class _CardPage extends State<CardPage> {
+  List<Plant> plantList = Plant.plantList;
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
@@ -79,7 +84,7 @@ class _CardPage extends State<CardPage> {
                                   width: 5,
                                 ),
                                 Text(
-                                  '6900'.farsiNumbers,
+                                  '23'.farsiNumbers,
                                   style: TextStyle(
                                     fontFamily: 'Lalezar',
                                     color: MyConstants.primarycolor,
