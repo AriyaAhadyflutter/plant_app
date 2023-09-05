@@ -40,7 +40,18 @@ dependencies:
   mobile_scanner: ^2.1.0
 
 
+
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/launcher_icon/play_store_512.png"
+  background_color: "#000000"
+  theme_color: "#316801"
+
+
   flutter_test:
     sdk: flutter
     
